@@ -13,7 +13,7 @@ public class Helper {
         return Files.newBufferedReader(Paths.get(Main.class.getResource(fileName).toURI()));
     }
 
-    public static Writer openWriter(String fileName) throws IOException, URISyntaxException {
+    public static Writer openWriter(String fileName) throws IOException {
         return Files.newBufferedWriter(Paths.get(fileName));
 //        return Files.newBufferedWriter(Paths.get(Main.class.getResource(fileName).toURI()));
     }

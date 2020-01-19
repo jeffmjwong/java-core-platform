@@ -1,5 +1,7 @@
 package com.pluralsight.javacoreplatform;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -10,10 +12,23 @@ public class Main {
 //        doTryCatchFinally();
 //        doTryWithResources();
 //        doTryWithResourcesMulti();
-
+//        doCloseThing();
+        String[] data = { "Line 1", "Line 2 2", "Line 3 3 3" };
+        writeData(data);
     }
 
-    public static void doTryCatchFinally() {
+    private static void writeData(String[] data) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("text1.txt"))) {
+            for (String d : data) {
+                bw.write(d);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void doTryCatchFinally() {
         char[] buff = new char[8];
         int length;
         Reader reader = null;
@@ -41,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void doTryWithResources() {
+    private static void doTryWithResources() {
         char[] buff = new char[8];
         int length;
 
@@ -59,7 +74,7 @@ public class Main {
         }
     }
 
-    public static void doTryWithResourcesMulti() {
+    private static void doTryWithResourcesMulti() {
         char[] buff = new char[8];
         int length;
 
@@ -75,6 +90,18 @@ public class Main {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
         } catch (URISyntaxException e) {
             System.out.println("URI Syntax Exception!! - " + e.getMessage());
+        }
+    }
+
+    private static void doCloseThing() {
+        try (MyAutoCloseable ac = new MyAutoCloseable()) {
+            ac.saySomething();
+        } catch (IOException e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+
+            for (Throwable t : e.getSuppressed()) {
+                System.out.println("Surpressed: " + t.getMessage());
+            }
         }
     }
 }
