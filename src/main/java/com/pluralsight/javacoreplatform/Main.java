@@ -62,12 +62,12 @@ public class Main {
         char[] buff = new char[8];
         int length;
 
-        try (Reader reader = Helper.openReader("/file1.txt"); Writer writer = Helper.openWriter("/file2.txt")) {
+        try (Reader reader = Helper.openReader("/file1.txt"); Writer writer = Helper.openWriter("file2.txt")) {
             while ((length = reader.read(buff)) != -1) {
                 System.out.println("\nlength: " + length);
+                writer.write(buff);
                 for (int i = 0; i < length; i++) {
                     System.out.println(buff[i]);
-                    writer.write(buff[i]);
                 }
             }
         } catch (IOException e) {

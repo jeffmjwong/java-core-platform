@@ -14,7 +14,7 @@ public class Helper {
     }
 
     public static Writer openWriter(String fileName) throws IOException, URISyntaxException {
-//        return Files.newBufferedWriter(Paths.get(fileName));
-        return Files.newBufferedWriter(Paths.get(Main.class.getResource(fileName).toURI()));
+        return Files.newBufferedWriter(Paths.get(fileName));
+//        return Files.newBufferedWriter(Paths.get(Main.class.getResource(fileName).toURI()));
     }
 }
