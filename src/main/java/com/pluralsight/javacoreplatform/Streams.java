@@ -7,16 +7,19 @@ import java.io.Reader;
 import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class Streams {
     public static void main(String[] args) {
 //        doTryCatchFinally();
 //        doTryWithResources();
@@ -50,18 +53,23 @@ public class Main {
     }
 
     private static void copyToZip(FileSystem zipFs) throws IOException, URISyntaxException {
-        Path sourceFile = Paths.get(Main.class.getResource("/file1.txt").toURI());
+        Path sourceFile = Paths.get(Streams.class.getResource("/file1.txt").toURI());
         Path destFile = zipFs.getPath("/file1Copied.txt");
 
         Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
     }
 
     private static void writeToFileInZip1(FileSystem zipFs, String[] data) throws IOException {
-
+        try (BufferedWriter bw = Files.newBufferedWriter(zipFs.getPath("/newFile1.txt"))) {
+            for (String d : data) {
+                bw.write(d);
+                bw.newLine();
+            }
+        }
     }
 
     private static void writeToFileInZip2(FileSystem zipFs, String[] data) throws IOException {
-
+        Files.write(zipFs.getPath("/newFile2.txt"), Arrays.asList(data), Charset.defaultCharset(), StandardOpenOption.CREATE);
     }
 
     private static void writeData(String[] data) {
