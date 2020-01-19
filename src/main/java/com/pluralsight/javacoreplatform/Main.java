@@ -2,12 +2,14 @@ package com.pluralsight.javacoreplatform;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.Writer;
 import java.net.URISyntaxException;
 
 public class Main {
     public static void main(String[] args) {
 //        doTryCatchFinally();
-        doTryWithResources();
+//        doTryWithResources();
+        doTryWithResourcesMulti();
     }
 
     public static void doTryCatchFinally() {
@@ -47,6 +49,25 @@ public class Main {
                 System.out.println("\nlength: " + length);
                 for (int i = 0; i < length; i++) {
                     System.out.println(buff[i]);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+        } catch (URISyntaxException e) {
+            System.out.println("URI Syntax Exception!! - " + e.getMessage());
+        }
+    }
+
+    public static void doTryWithResourcesMulti() {
+        char[] buff = new char[8];
+        int length;
+
+        try (Reader reader = Helper.openReader("/file1.txt"); Writer writer = Helper.openWriter("/file2.txt")) {
+            while ((length = reader.read(buff)) != -1) {
+                System.out.println("\nlength: " + length);
+                for (int i = 0; i < length; i++) {
+                    System.out.println(buff[i]);
+                    writer.write(buff[i]);
                 }
             }
         } catch (IOException e) {
