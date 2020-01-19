@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) {
 //        doTryCatchFinally();
 //        doTryWithResources();
-        doTryWithResourcesMulti();
+//        doTryWithResourcesMulti();
+
     }
 
     public static void doTryCatchFinally() {
