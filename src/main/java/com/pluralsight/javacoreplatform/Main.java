@@ -9,8 +9,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +31,11 @@ public class Main {
                 "Line 5 5 5 5 "
         };
 
-        FileSystem zipFs = openZip(Paths.get("myData.zip"));
-        copyToZip(zipFs);
+        try (FileSystem zipFs = openZip(Paths.get("myData.zip"))) {
+            copyToZip(zipFs);
+        } catch (Exception e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+        }
     }
 
     private static FileSystem openZip(Path zipPath) throws IOException, URISyntaxException {
@@ -42,8 +47,11 @@ public class Main {
         return FileSystems.newFileSystem(zipUri, providerProps);
     }
 
-    private static void copyToZip(FileSystem zipFs) throws IOException {
+    private static void copyToZip(FileSystem zipFs) throws IOException, URISyntaxException {
+        Path sourceFile = Paths.get(Main.class.getResource("/file1.txt").toURI());
+        Path destFile = zipFs.getPath("/file1Copied.txt");
 
+        Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
     }
 
     private static void writeData(String[] data) {
