@@ -1,21 +1,49 @@
 package com.pluralsight.javacoreplatform;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
 //        doTryCatchFinally();
-        doTryWithResources();
+//        doTryWithResources();
 //        doTryWithResourcesMulti();
 //        doCloseThing();
-//        String[] data = { "Line 1", "Line 2 2", "Line 3 3 3" };
-//        writeData(data);
+
+        String[] data = {
+                "Line 1",
+                "Line 2 2",
+                "Line 3 3 3",
+                "Line 4 4 4 4",
+                "Line 5 5 5 5 "
+        };
+
+        FileSystem zipFs = openZip(Paths.get("myData.zip"));
+        copyToZip(zipFs);
+    }
+
+    private static FileSystem openZip(Path zipPath) throws IOException, URISyntaxException {
+        final Map<String, String> providerProps = new HashMap<>();
+        providerProps.put("create", "true");
+
+        URI zipUri = new URI("jar:file", zipPath.toUri().getPath(), null);
+
+        return FileSystems.newFileSystem(zipUri, providerProps);
+    }
+
+    private static void copyToZip(FileSystem zipFs) throws IOException {
+
     }
 
     private static void writeData(String[] data) {
@@ -58,17 +86,15 @@ public class Main {
     }
 
     private static void doTryWithResources() {
-//        char[] buff = new char[8];
-//        int length;
-        String inValue;
+        char[] buff = new char[8];
+        int length;
 
-        try (BufferedReader reader = Helper.openReader("/file1.txt")) {
-            while ((inValue = reader.readLine()) != null) {
-//                System.out.println("\nlength: " + length);
-//                for (int i = 0; i < length; i++) {
-//                    System.out.println(buff[i]);
-//                }
-                System.out.println(inValue);
+        try (Reader reader = Helper.openReader("/file1.txt")) {
+            while ((length = reader.read(buff)) != -1) {
+                System.out.println("\nlength: " + length);
+                for (int i = 0; i < length; i++) {
+                    System.out.println(buff[i]);
+                }
             }
         } catch (IOException e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
