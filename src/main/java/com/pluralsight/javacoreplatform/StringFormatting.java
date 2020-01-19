@@ -6,7 +6,7 @@ public class StringFormatting {
     public static void main(String[] args) {
         StringJoiner sj = new StringJoiner(", ", "3 types of rays - ", " hmmm");
 
-        sj.add("alpha").add("beta").add("delta");
+        sj.add("alpha");
 
         String result = sj.toString();
 
