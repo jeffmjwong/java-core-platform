@@ -33,6 +33,8 @@ public class Main {
 
         try (FileSystem zipFs = openZip(Paths.get("myData.zip"))) {
             copyToZip(zipFs);
+            writeToFileInZip1(zipFs, data);
+            writeToFileInZip2(zipFs, data);
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
         }
@@ -52,6 +54,14 @@ public class Main {
         Path destFile = zipFs.getPath("/file1Copied.txt");
 
         Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    private static void writeToFileInZip1(FileSystem zipFs, String[] data) throws IOException {
+
+    }
+
+    private static void writeToFileInZip2(FileSystem zipFs, String[] data) throws IOException {
+
     }
 
     private static void writeData(String[] data) {
