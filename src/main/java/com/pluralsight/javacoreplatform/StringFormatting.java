@@ -4,11 +4,8 @@ import java.util.StringJoiner;
 
 public class StringFormatting {
     public static void main(String[] args) {
-        StringJoiner sj = new StringJoiner(", ", "{", "}");
-        sj.setEmptyValue("EMPTY");
-
-        String result = sj.toString();
-
-        System.out.println(result);
+        int david = 13, dawson = 11, dillon = 4, gordon = 2;
+        String s1 = String.format("My nephews are %d, %d, %d and %d years old", david, dawson, dillon, gordon);
+        System.out.println(s1);
     }
 }
