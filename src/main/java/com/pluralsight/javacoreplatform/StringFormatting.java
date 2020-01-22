@@ -9,7 +9,10 @@ import java.util.StringJoiner;
 
 public class StringFormatting {
     public static void main(String[] args) {
-        doWrite(10, 8, 5, 3, 6.5);
+//        doWrite(10, 8, 5, 3, 6.5);
+        String s1 = "apple, apple and orange please";
+        String s2 = s1.replaceAll("ple\\b", "ricot");
+        System.out.println(s2);
     }
 
     private static void doWrite(int david, int dawson, int dillon, int gordon, double avgDiff) {
