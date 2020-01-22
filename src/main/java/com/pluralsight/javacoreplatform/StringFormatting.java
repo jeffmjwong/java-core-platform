@@ -9,19 +9,19 @@ import java.util.StringJoiner;
 
 public class StringFormatting {
     public static void main(String[] args) {
-        try {
-            doWrite(10, 8, 5, 3, 6.5);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        doWrite(10, 8, 5, 3, 6.5);
     }
 
-    private static void doWrite(int david, int dawson, int dillon, int gordon, double avgDiff) throws IOException {
-        BufferedWriter writer = Files.newBufferedWriter(Paths.get("myFile.txt"));
+    private static void doWrite(int david, int dawson, int dillon, int gordon, double avgDiff) {
+        try {
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get("myFile.txt"));
 
-        try (Formatter f = new Formatter(writer)) {
-            f.format("My nephews are %d, %d, %d and %d years old", david, dawson, dillon, gordon);
-            f.format("The average age between each is %.1f years", avgDiff);
+            try (Formatter f = new Formatter(writer)) {
+                f.format("My nephews are %d, %d, %d and %d years old", david, dawson, dillon, gordon);
+                f.format("The average age between each is %.1f years", avgDiff);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
