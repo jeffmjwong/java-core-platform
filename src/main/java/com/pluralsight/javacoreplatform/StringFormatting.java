@@ -8,16 +8,18 @@ import java.util.Arrays;
 import java.util.Formatter;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringFormatting {
     public static void main(String[] args) {
 //        doWrite(10, 8, 5, 3, 6.5);
-        String s1 = "apple, apple and orange please";
-        List<String> strings = Arrays.asList(s1.split("\\b"));
-        for (String thePart : strings) {
-            if (thePart.matches("apple")) {
-                System.out.println(thePart);
-            }
+        String s1 = "apple, apple # and orange please";
+        Pattern pattern = Pattern.compile("[a-z]+|,|#");
+        Matcher matcher = pattern.matcher(s1);
+
+        while (matcher.find()) {
+            System.out.println(matcher.group());
         }
     }
 
