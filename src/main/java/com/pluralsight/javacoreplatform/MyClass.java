@@ -1,6 +1,6 @@
 package com.pluralsight.javacoreplatform;
 
-public class MyClass {
+public class MyClass implements Comparable<MyClass> {
     private String label;
     private String value;
 
@@ -14,6 +14,11 @@ public class MyClass {
     public MyClass(String label, String value) {
         this.label = label;
         this.value = value;
+    }
+
+    @Override
+    public int compareTo(MyClass other) {
+        return this.getValue().compareToIgnoreCase(other.getValue());
     }
 
     @Override
