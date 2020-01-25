@@ -1,5 +1,7 @@
 package com.pluralsight.javacoreplatform;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -16,5 +18,13 @@ public class Collections {
         tree.add(new MyClass("fff", "f"));
 
         tree.forEach(System.out::println);
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("111", "abc");
+        map.put("222", "def");
+        map.put("333", "ghi");
+
+        map.replaceAll((k, v) -> v.toUpperCase() + k);
     }
 }
