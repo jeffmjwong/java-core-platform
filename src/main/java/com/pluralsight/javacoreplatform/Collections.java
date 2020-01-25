@@ -26,5 +26,6 @@ public class Collections {
         map.put("333", "ghi");
 
         map.replaceAll((k, v) -> v.toUpperCase() + k);
+        map.forEach((k, v) -> System.out.println(k + " | " + v));
     }
 }
