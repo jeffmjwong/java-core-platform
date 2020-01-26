@@ -10,4 +10,8 @@ public class CommandLineArgs {
             }
         }
     }
+
+    private static void showFileLines(String filename) {
+        System.out.println();
+    }
 }
