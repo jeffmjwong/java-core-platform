@@ -8,11 +8,13 @@ public class CommandLineArgs {
     public static void main(String[] args) {
         if (args.length == 0) {
             showUsage();
+            return;
         }
 
         String filename = args[0];
         if (!Files.exists(Paths.get(filename))) {
             System.out.println("\n File not found: " + filename);
+            return;
         }
 
         showFileLines(filename);
