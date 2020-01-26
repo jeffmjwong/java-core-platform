@@ -1,6 +1,7 @@
 package com.pluralsight.javacoreplatform;
 
 import java.io.BufferedReader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -23,6 +24,12 @@ public class CommandLineArgs {
         Properties props = new Properties();
         props.setProperty("displayName", "Jim Wilson");
         props.setProperty("accountNumber", "123-45-6789");
+
+        try (Writer writer = Files.newBufferedWriter(Paths.get("xyz.properties"))) {
+            props.store(writer, "My comment");
+        } catch (Exception e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+        }
     }
 
     private static void showFileLines(String filename) {
