@@ -6,13 +6,16 @@ import java.nio.file.Paths;
 
 public class CommandLineArgs {
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Hello Java no arguments!");
-        } else {
-            for (String word : args) {
-                System.out.println(word);
-            }
+        if (args.length == 0) {
+            showUsage();
         }
+
+        String filename = args[0];
+        if (!Files.exists(Paths.get(filename))) {
+            System.out.println("\n File not found: " + filename);
+        }
+
+        showFileLines(filename);
     }
 
     private static void showFileLines(String filename) {
