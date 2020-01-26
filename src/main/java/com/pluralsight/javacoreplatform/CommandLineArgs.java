@@ -3,21 +3,26 @@ package com.pluralsight.javacoreplatform;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Properties;
 
 public class CommandLineArgs {
     public static void main(String[] args) {
-        if (args.length == 0) {
-            showUsage();
-            return;
-        }
+//        if (args.length == 0) {
+//            showUsage();
+//            return;
+//        }
+//
+//        String filename = args[0];
+//        if (!Files.exists(Paths.get(filename))) {
+//            System.out.println("\n File not found: " + filename);
+//            return;
+//        }
+//
+//        showFileLines(filename);
 
-        String filename = args[0];
-        if (!Files.exists(Paths.get(filename))) {
-            System.out.println("\n File not found: " + filename);
-            return;
-        }
-
-        showFileLines(filename);
+        Properties props = new Properties();
+        props.setProperty("displayName", "Jim Wilson");
+        props.setProperty("accountNumber", "123-45-6789");
     }
 
     private static void showFileLines(String filename) {
