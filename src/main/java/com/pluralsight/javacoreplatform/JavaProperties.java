@@ -23,16 +23,22 @@ public class JavaProperties {
             String welcomeMessage = userProps.getProperty("welcomeMessage");
             String farewellMessage = userProps.getProperty("farewellMessage");
 
-            System.out.println(welcomeMessage);
-            System.out.println(farewellMessage);
+            System.out.println(System.getProperty("user.name"));
+            System.out.println(System.getProperty("user.home"));
+            System.out.println(System.getProperty("os.arch"));
+            System.out.println(System.getProperty("java.vendor"));
+            System.out.println(System.getProperty("java.class.path"));
 
-            if (userProps.getProperty("isFirstRun").equalsIgnoreCase("Y")) {
-                userProps.setProperty("welcomeMessage", "Welcome back");
-                userProps.setProperty("farewellMessage", "Things will be familiar now");
-                userProps.setProperty("isFirstRun", "N");
-
-                saveUserProps(userProps);
-            }
+//            System.out.println(welcomeMessage);
+//            System.out.println(farewellMessage);
+//
+//            if (userProps.getProperty("isFirstRun").equalsIgnoreCase("Y")) {
+//                userProps.setProperty("welcomeMessage", "Welcome back");
+//                userProps.setProperty("farewellMessage", "Things will be familiar now");
+//                userProps.setProperty("isFirstRun", "N");
+//
+//                saveUserProps(userProps);
+//            }
         } catch (IOException e) {
             System.out.println("Exception <" + e.getClass().getSimpleName() + ">" + e.getMessage());
         }
