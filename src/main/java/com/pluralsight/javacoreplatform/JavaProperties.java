@@ -23,11 +23,7 @@ public class JavaProperties {
             String welcomeMessage = userProps.getProperty("welcomeMessage");
             String farewellMessage = userProps.getProperty("farewellMessage");
 
-            System.out.println(System.getProperty("user.name"));
-            System.out.println(System.getProperty("user.home"));
-            System.out.println(System.getProperty("os.arch"));
-            System.out.println(System.getProperty("java.vendor"));
-            System.out.println(System.getProperty("java.class.path"));
+            System.out.println(System.getenv("PATH"));
 
 //            System.out.println(welcomeMessage);
 //            System.out.println(farewellMessage);
