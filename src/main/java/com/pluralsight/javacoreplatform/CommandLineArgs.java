@@ -19,7 +19,7 @@ public class CommandLineArgs {
         System.out.println();
 
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filename))) {
-            String line = null;
+            String line;
 
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
@@ -27,5 +27,10 @@ public class CommandLineArgs {
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
         }
+    }
+
+    private static void showUsage() {
+        System.out.println();
+        System.out.println("Please provide the filename to process on the command line!");
     }
 }
