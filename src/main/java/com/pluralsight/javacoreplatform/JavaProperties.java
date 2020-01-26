@@ -2,6 +2,7 @@ package com.pluralsight.javacoreplatform;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,6 +25,14 @@ public class JavaProperties {
 
             System.out.println(welcomeMessage);
             System.out.println(farewellMessage);
+
+            if (userProps.getProperty("isFirstRun").equalsIgnoreCase("Y")) {
+                userProps.setProperty("welcomeMessage", "Welcome back");
+                userProps.setProperty("farewellMessage", "Things will be familiar now");
+                userProps.setProperty("isFirstRun", "N");
+
+                saveUserProps(userProps);
+            }
         } catch (IOException e) {
             System.out.println("Exception <" + e.getClass().getSimpleName() + ">" + e.getMessage());
         }
@@ -39,5 +48,11 @@ public class JavaProperties {
         }
 
         return userProps;
+    }
+
+    private static void saveUserProps(Properties userProps) throws IOException {
+        try (OutputStream outputStream = Files.newOutputStream(Paths.get("userValues.xml"))) {
+            userProps.storeToXML(outputStream, null);
+        }
     }
 }
