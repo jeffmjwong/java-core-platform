@@ -10,9 +10,20 @@ import java.util.Properties;
 public class JavaProperties {
     public static void main(String[] args) {
         try {
+            Properties defaultProps = new Properties();
 
-            Properties userProps = new Properties();
+            try (InputStream inputStream = JavaProperties.class.getResourceAsStream("/MyDefaultValues.xml")) {
+                defaultProps.loadFromXML(inputStream);
+            }
+
+            Properties userProps = new Properties(defaultProps);
             loadUserProps(userProps);
+
+            String welcomeMessage = userProps.getProperty("welcomeMessage");
+            String farewellMessage = userProps.getProperty("farewellMessage");
+
+            System.out.println(welcomeMessage);
+            System.out.println(farewellMessage);
         } catch (IOException e) {
             System.out.println("Exception <" + e.getClass().getSimpleName() + ">" + e.getMessage());
         }
