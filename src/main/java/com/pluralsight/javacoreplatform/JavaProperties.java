@@ -23,18 +23,16 @@ public class JavaProperties {
             String welcomeMessage = userProps.getProperty("welcomeMessage");
             String farewellMessage = userProps.getProperty("farewellMessage");
 
-            System.out.println(System.getenv("PATH"));
+            System.out.println(welcomeMessage);
+            System.out.println(farewellMessage);
 
-//            System.out.println(welcomeMessage);
-//            System.out.println(farewellMessage);
-//
-//            if (userProps.getProperty("isFirstRun").equalsIgnoreCase("Y")) {
-//                userProps.setProperty("welcomeMessage", "Welcome back");
-//                userProps.setProperty("farewellMessage", "Things will be familiar now");
-//                userProps.setProperty("isFirstRun", "N");
-//
-//                saveUserProps(userProps);
-//            }
+            if (userProps.getProperty("isFirstRun").equalsIgnoreCase("Y")) {
+                userProps.setProperty("welcomeMessage", "Welcome back");
+                userProps.setProperty("farewellMessage", "Things will be familiar now");
+                userProps.setProperty("isFirstRun", "N");
+
+                saveUserProps(userProps);
+            }
         } catch (IOException e) {
             System.out.println("Exception <" + e.getClass().getSimpleName() + ">" + e.getMessage());
         }
