@@ -9,5 +9,10 @@ public class JavaLogging {
 
     public static void main(String[] args) {
         logger.setLevel(Level.INFO);
+
+        logger.log(Level.SEVERE, "Uh Oh!!");
+        logger.log(Level.INFO, "Just so you know");
+        logger.log(Level.FINE, "Hey developer dude");
+        logger.log(Level.FINEST, "You're special");
     }
 }
