@@ -16,5 +16,9 @@ public class JavaLogging {
 
         h.setFormatter(f);
         logger.addHandler(h);
+
+        logger.setLevel(Level.INFO);
+
+        logger.log(Level.INFO, "We're logging INFO level messages!");
     }
 }
