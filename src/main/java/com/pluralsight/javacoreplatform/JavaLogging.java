@@ -5,11 +5,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class JavaLogging {
+    static Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     public static void main(String[] args) {
-        LogManager lm = LogManager.getLogManager();
-
-        Logger logger = lm.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
         logger.log(Level.INFO, "My first log message");
         logger.log(Level.INFO, "Another message");
     }
