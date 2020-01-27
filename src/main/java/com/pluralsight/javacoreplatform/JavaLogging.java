@@ -8,7 +8,6 @@ public class JavaLogging {
     static Logger logger = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static void main(String[] args) {
-        logger.log(Level.INFO, "My first log message");
-        logger.log(Level.INFO, "Another message");
+        logger.setLevel(Level.INFO);
     }
 }
